@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+	<html ng-app="myApp">
+	<head>
+		
+		<title>Angular $broadcast</title>
+
+		<style>
+    .container {
+        background-color: #d7d6d6;
+        color: red;
+        padding: 0px 0px 3px 9px;
+    }
+	span {
+        padding: 3px;
+        border: 3px ridge;
+        cursor: pointer;
+        width: 100px;
+        display: inline-block;
+        font: bold 18px/22px Georgia;
+        text-align: center;
+        color: white;
+        background-color: #e27b7b;
+    }
+    label {
+        padding: 2px;
+        margin: 5px 10px;
+        font: 15px bold;
+        display: inline-block;
+        width: 50px;
+        text-align: right;
+    }
+    .lList {
+        vertical-align: top;
+        display: inline-block;
+        width: 190px;
+    }
+    .cInfo {
+        display: inline-block;
+        width: 275px;
+        border: 3px #f1d6a3 ridge;
+        padding: 3px;
+    }
+			
+		</style>
+		
+	</head>
+	<body>
+        <div class="container">
+            
+        
+
+		<div ng-app="myApp">
+<h1>The Other Guys</h1>
+<h3>Custom Events in Nested Controllers</h3>
+<div ng-controller="Characters">
+    <div class="lList"> <span ng-repeat="name in names" ng-click="changeName()">{{name}}</span>
+
+    </div>
+    <div class="cInfo">
+        <div ng-controller="Character">
+            <label>Name:</label>{{currentName}}
+            <br>
+            <label>Job:</label>{{currentInfo.job}}
+            <br>
+            <label>Weapon:</label>{{currentInfo.weapon}}
+            <br> <span ng-click="deleteChar()">Delete</span>
+
+        </div>
+    </div>
+    </div>
+    </div>
+		<script src="http://code.angularjs.org/1.3.0/angular.min.js"></script>
+        <script src="angular.js"></script>
+		<script>
+
+		angular.module('myApp', [])
+        .service("ravensService", function ($http, $q)
+{
+    var deferred = $q.defer();
+    $http.get('/reset/data').then(function (data)
+    {
+        deferred.resolve(data);
+    });
+
+    this.getPlayers = function ()
+    {
+        return deferred.promise;
+    }
+})
+
+.controller("Characters", function ($scope, ravensService)
+{
+    var promise = ravensService.getPlayers();
+    promise.then(function (data)
+    {
+        $scope.names = data.data;
+        console.log($scope.names);
+    });
+})
+    .controller('Characters', function ($scope) {
+    $scope.names = ['Alan', 'Terry', 'Gene', 'Sheila', 'Danson', 'Highsmith', 'Bob'];
+    $scope.currentName = $scope.names[0];
+    $scope.changeName = function () {
+        $scope.currentName = this.name;
+        $scope.$broadcast('CharacterChanged', this.name);
+    };
+    $scope.$on('CharacterDeleted', function (event, removeName) {
+        var i = $scope.names.indexOf(removeName);
+        $scope.names.splice(i, 1);
+        $scope.currentName = $scope.names[0];
+        $scope.$broadcast('CharacterChanged', $scope.currentName);
+
+    });
+})
+    .controller('Character', function ($scope) {
+    $scope.info = {
+        'Alan': {
+            weapon: 'Calculator',
+            job: 'Police Officer'
+        },
+            'Terry': {
+            weapon: 'Gun',
+            job: 'Police Officer'
+        },
+            'Gene': {
+            weapon: 'None',
+            job: 'Police Captain'
+        },
+            'Sheila': {
+            weapon: 'None',
+            job: 'M D'
+        },
+            'Danson': {
+            weapon: 'Gun',
+            job: 'Police Detective'
+        },
+            'Highsmith': {
+            weapon: 'Gun',
+            job: 'Police Detective'
+        },
+            'Bob': {
+            weapon: 'None',
+            job: 'Police Accountant'
+        }      
+    };
+    $scope.currentInfo = $scope.info['Alan'];
+    $scope.$on('CharacterChanged', function (event, newCharacter) {
+        $scope.currentInfo = $scope.info[newCharacter];
+    });
+    $scope.deleteChar = function () {
+        delete $scope.info[$scope.currentName];
+        $scope.$emit('CharacterDeleted', $scope.currentName);
+    };
+});
+	</script>
+	</body>
+	</html>	

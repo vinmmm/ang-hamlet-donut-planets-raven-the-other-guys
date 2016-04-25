@@ -1,0 +1,53 @@
+ [       {
+            "name":"Alen", 
+            "weapon":"Calculator",
+            "job":"Forensic Accountant"
+        },
+
+         {
+            "name":"Terry", 
+            "weapon": "Gun",
+            "job": "Police Detective"
+        },
+
+
+         {
+            "name":"Gene", 
+            "weapon": "TLC References",
+            "job": "Police Captain"
+        },
+
+         {
+            "name":"Sheila", 
+            "weapon": "None",
+            "job": "Medical Doctor"
+        },
+
+         {
+            "name":"Danson", 
+            "weapon": "Gun",
+            "job": "Police Detective"
+        },
+
+         {
+            "name":"Highsmith", 
+            "weapon": "Gun",
+            "job": "Police Detective"
+        },
+
+         {
+            "name":"Bob", 
+            "weapon": "None",
+            "job": "Police Accountant"
+        },
+
+        {
+            "name":"Ershon", 
+            "weapon": "None",
+            "job": "Billionaire"
+        }
+
+
+
+        ]
+            

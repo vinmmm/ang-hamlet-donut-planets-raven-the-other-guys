@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<title>AccioCode AngularJS Tutorial - Sorting and Filtering and Ng-Repeat</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	
+
+	
+	<link rel="stylesheet" href="lib/amelia.bootstrap.css">
+    <link rel="stylesheet" href="resources/css/styles.css">
+    <script src="angular.min.js"></script>
+</head>
+<body>
+
+	<div class="mainContainer" data-ng-app="RavensApp">
+		<h1>Baltimore Ravens</h1>
+
+		<input type="text" data-ng-model="search.$">
+
+		<div data-ng-controller="ravensCtrl">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Player</th>
+						<th>Position</th>
+						<th>Number</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="player in players | filter:search | orderBy:'name' | limitTo: 12">
+						<td>{{player.name}}</td>
+						<td>{{player.position}}</td>
+						<td>{{player.number}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+<canvas id="mainCanvas"></canvas>
+		
+	
+    <script src="angular.min.js"></script>
+    <script src="angularjstutorial.js"></script>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    	function refreshServerInfo() {
+const $serverInfo = $('.serverInfo'); $.get('http://localhost:3000/api/attractions').then(
+            // successful return
+function(data) { Object.keys(data).forEach(p => {
+$(`[data-replace="${p}"]`).text(data[p]); });
+},
+function(jqXHR, textStatus, err) {
+                console.error(err);
+                $serverInfo.addClass('error')
+                .html('Error connecting to server.');
+} );
+}
+    </script>
+	
+</body>
+</html>

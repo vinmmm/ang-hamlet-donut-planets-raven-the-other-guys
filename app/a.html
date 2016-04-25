@@ -1,0 +1,32 @@
+<!doctype html>
+<html ng-app="App" >
+<head>
+  <meta charset="utf-8">
+  <title>Todos $http</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+  <script src="app.js"></script>
+  <script src="characters.json"></script>
+</head>
+<body ng-controller="Character">
+  <ol>
+    <li ng-repeat="character in characters">
+     <p>{{todo.name}} </p> 
+     <p>Weapon: {{todo.weapon}}</p>  
+     <p>Job: {{todo.job}}</p>
+       
+    </li>
+  </ol>
+  <script>
+var App = angular.module('App', []);
+
+App.controller('CharacterCtrl', function($scope, $http) {
+  $http.get('characters-2.json')
+       .then(function(res){
+          $scope.characters = res.data;                
+        });
+});
+
+  </script>
+</body>
+</html>

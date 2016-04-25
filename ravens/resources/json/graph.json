@@ -1,0 +1,38 @@
+[
+        {
+            "name": "Alan",
+            "weapon": "Calculator",
+            "job": "PoliceOfficer"
+        },
+        {
+            "name": "Terry",
+            "weapon": "Gun",
+            "job": "PoliceOfficer"
+        },
+        {
+            "name": "Gene",
+            "weapon": "None",
+            "job": "PoliceCaptain"
+        },
+        {
+            "name": "Sheila",
+            "weapon": "None",
+            "job": "M.D."
+        },
+        {
+            "name": "Danson",
+            "weapon": "Gun",
+            "job": "PoliceDetective"
+        },
+        {
+            "name": "Highsmith",
+            "weapon": "Gun",
+            "job": "PoliceDetective"
+        },
+        {
+            "name": "Bob",
+            "weapon": "None",
+            "job": "PoliceAccountant"
+        }
+
+]

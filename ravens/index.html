@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>AccioCode AngularJS Tutorial - Sorting and Filtering and Ng-Repeat</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-COMPATIBLE" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<script src="angular.min.js"></script>
+	
+	<script src="angularjstutorial.js"></script>
+
+	
+		<style>
+    .container {
+        background-color: #d7d6d6;
+        color: red;
+        padding: 0px 0px 3px 9px;
+    }
+	span {
+        padding: 3px;
+        border: 3px ridge;
+        cursor: pointer;
+        width: 100px;
+        display: inline-block;
+        font: bold 18px/22px Georgia;
+        text-align: center;
+        color: white;
+        background-color: #e27b7b;
+    }
+    label {
+        padding: 2px;
+        margin: 5px 10px;
+        font: 15px bold;
+        display: inline-block;
+        width: 50px;
+        text-align: right;
+    }
+    .lList {
+        vertical-align: top;
+        display: inline-block;
+        width: 190px;
+    }
+    .cInfo {
+        display: inline-block;
+        width: 275px;
+        border: 3px #f1d6a3 ridge;
+        padding: 3px;
+    }
+			
+		</style>
+</head>
+<body>
+  <div class="container">
+            
+        
+
+		<div ng-app="polarisApp">
+<h1>The Other Guys</h1>
+<h3>Custom Events in Nested Controllers</h3>
+<div ng-controller="Characters">
+
+    <div class="lList"> <span ng-repeat="name in names" ng-click="changeName()">{{name.name}}</span>
+    </div>
+    <div class="cInfo">
+        <div ng-controller="Character">
+            <label>Name:</label>{{currentName.name}}
+            <br>
+            <label>Job:</label>{{currentName.job}}
+            <br>
+            <label>Weapon:</label>{{currentName.weapon}}
+            <br> <span ng-click="deleteChar()">Delete</span>
+
+        </div>
+    </div>
+    </div>
+    </div>
+	
+
+  
+</body>
+</html>
